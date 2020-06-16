@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-06-15T15:21:26 IST" name="Suite" finished-at="2020-06-15T15:22:19 IST" duration-ms="52658">
+  <suite started-at="2020-06-16T15:50:45 IST" name="Default suite" finished-at="2020-06-16T15:51:35 IST" duration-ms="50110">
     <groups>
     </groups>
-    <test started-at="2020-06-15T15:21:26 IST" name="Test" finished-at="2020-06-15T15:22:19 IST" duration-ms="52658">
-      <class name="sample.Calculator">
-        <test-method is-config="true" signature="beforetest()[pri:0, instance:sample.Calculator@7c83dc97]" started-at="2020-06-15T15:21:26 IST" name="beforetest" finished-at="2020-06-15T15:22:19 IST" duration-ms="52562" status="PASS">
+    <test started-at="2020-06-16T15:50:45 IST" name="Default test" finished-at="2020-06-16T15:51:35 IST" duration-ms="50110">
+      <class name="sample.app_testing">
+        <test-method is-config="true" signature="beforetest()[pri:0, instance:sample.app_testing@65b3f4a4]" started-at="2020-06-16T15:50:45 IST" name="beforetest" finished-at="2020-06-16T15:51:16 IST" duration-ms="30613" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforetest -->
-        <test-method signature="f()[pri:0, instance:sample.Calculator@7c83dc97]" started-at="2020-06-15T15:22:19 IST" name="f" finished-at="2020-06-15T15:22:19 IST" duration-ms="16" status="PASS">
+        <test-method signature="splash_screen()[pri:0, instance:sample.app_testing@65b3f4a4]" started-at="2020-06-16T15:51:16 IST" name="splash_screen" finished-at="2020-06-16T15:51:28 IST" duration-ms="12093" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- f -->
-        <test-method is-config="true" signature="aftertest()[pri:0, instance:sample.Calculator@7c83dc97]" started-at="2020-06-15T15:22:19 IST" name="aftertest" finished-at="2020-06-15T15:22:19 IST" duration-ms="1" status="PASS">
+        </test-method> <!-- splash_screen -->
+        <test-method signature="Mobile_number()[pri:1, instance:sample.app_testing@65b3f4a4]" started-at="2020-06-16T15:51:28 IST" name="Mobile_number" finished-at="2020-06-16T15:51:35 IST" duration-ms="7315" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- aftertest -->
-      </class> <!-- sample.Calculator -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- Mobile_number -->
+      </class> <!-- sample.app_testing -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

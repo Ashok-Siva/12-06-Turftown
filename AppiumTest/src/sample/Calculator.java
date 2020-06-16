@@ -16,6 +16,8 @@ import io.appium.java_client.remote.MobileCapabilityType;
 
 public class Calculator {
 	
+	AppiumDriver<MobileElement> driver;
+	
 	@BeforeTest
 	public void beforetest() throws MalformedURLException, InterruptedException
 	{
@@ -35,7 +37,7 @@ public class Calculator {
 				
 				//Instantiate Appium Driver
 				
-				AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(url, caps);
+				driver = new AndroidDriver<MobileElement>(url, caps);
 				Thread.sleep(5000);
 	} 
 	
@@ -49,6 +51,6 @@ public class Calculator {
   @AfterTest
   public void aftertest()
   {
-	  //driver.quit();
+	  driver.quit();
   }
 }
