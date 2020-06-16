@@ -1,9 +1,17 @@
 package sample;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -28,6 +36,17 @@ public class app_testing
 {
 	AndroidDriver<MobileElement> driver;
 	TouchAction action;
+	
+	int j;
+	
+    public XSSFWorkbook workbook;
+	
+    public XSSFSheet sheet;
+    
+    public XSSFCell cell;
+    
+    // Import excel sheet.
+    public File src=new File("C:\\Users\\ashok\\OneDrive\\Documents\\Mobile Application TC.xlsx");
 	
 	@BeforeTest
 	public void beforetest() throws MalformedURLException
@@ -57,13 +76,31 @@ public class app_testing
 	
 	
   @Test(priority=0)
-  public void splash_screen() throws InterruptedException 
+  public void splash_screen() throws InterruptedException, IOException 
   {
-	  swipe();
-	  swipe();
-	  swipe();
-	  swipe();
-	  System.out.println("PageSwipe");
+    	// Load the file.
+	    FileInputStream finput = new FileInputStream(src);
+		// Load he workbook.
+	    workbook = new XSSFWorkbook(finput);
+	    // Load the sheet in which data is stored.
+	    sheet = workbook.getSheet("sheet1");
+	  
+	  try 
+	  {
+		  swipe();
+		  swipe();
+		  swipe();
+		  swipe();
+		  System.out.println("PageSwipe");
+		  sheet.getRow(1).createCell(j).setCellValue("Pass");
+		  
+	} catch (Exception e) {
+		// TODO: handle exception
+		sheet.getRow(1).createCell(j).setCellValue("fail");
+	}
+	  
+	  
+	  
 	  
 	  MobileElement get_started = driver.findElementByXPath("//*[@text='GET STARTED']");
 	  get_started.click();
@@ -71,10 +108,16 @@ public class app_testing
 	  Thread.sleep(3000);
 	  
 	  
+	        FileOutputStream fileOutput = new FileOutputStream(src);
+	        // finally write content
+	        workbook.write(fileOutput);
+	         // close the file
+	        fileOutput.close();
+	  
   }
   
   @Test(priority=1)
-  public void Mobile_number() throws InterruptedException
+  public void Login_via_Mobile_number() throws InterruptedException
   {
 	  //===========MOBILE NUMBER============//
 	  
