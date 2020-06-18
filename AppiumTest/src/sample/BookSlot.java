@@ -32,7 +32,7 @@ import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
 
 
-public class app_testing 
+public class BookSlot 
 {
 	AndroidDriver<MobileElement> driver;
 	TouchAction action;
@@ -64,13 +64,14 @@ public class app_testing
 				caps.setCapability(MobileCapabilityType.NO_RESET, "true");
 				}
 				*/
+				
 				//virtual device
 				{
-					caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 					caps.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+					caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 			        caps.setCapability("deviceName","Android Emulator");
 			        caps.setCapability("platformVersion", "4.4");
-			        caps.setCapability(MobileCapabilityType.NO_RESET, "true");
+			        
 				}
 				
 				caps.setCapability("appPackage", "com.turftown");
@@ -86,84 +87,109 @@ public class app_testing
 					
 				System.out.println("App installed");
 	}
-	
-	
-  @Test(priority=0)
-  public void splash_screen() throws InterruptedException, IOException 
-  {
-    	// Load the file.
-	    FileInputStream finput = new FileInputStream(src);
-		// Load he workbook.
-	    workbook = new XSSFWorkbook(finput);
-	    // Load the sheet in which data is stored.
-	    sheet = workbook.getSheet("sheet1");
-	  
-	  try 
+ 
+
+	 @Test(priority=0)
+	  public void splash_screen() throws InterruptedException, IOException 
 	  {
-		  swipe();
-		  Thread.sleep(3000);
-		  swipe();
-		  Thread.sleep(3000);
-		  swipe();
-		  Thread.sleep(3000);
-		  swipe();
-		  Thread.sleep(3000);
-		  System.out.println("PageSwipe");
-		  System.out.println("Splash screen pass");
-		  //sheet.getRow(1).createCell(j).setCellValue("Pass");
+	    	// Load the file.
+		    FileInputStream finput = new FileInputStream(src);
+			// Load he workbook.
+		    workbook = new XSSFWorkbook(finput);
+		    // Load the sheet in which data is stored.
+		    sheet = workbook.getSheet("sheet1");
 		  
-	} catch (Exception e) {
-		// TODO: handle exception
-		//sheet.getRow(1).createCell(j).setCellValue("fail");
-		System.out.println("Fail");
-	}
+		  try 
+		  {
+			  swipe();
+			  Thread.sleep(3000);
+			  swipe();
+			  Thread.sleep(3000);
+			  swipe();
+			  Thread.sleep(3000);
+			  swipe();
+			  Thread.sleep(3000);
+			  System.out.println("PageSwipe");
+			  System.out.println("Splash screen pass");
+			  //sheet.getRow(1).createCell(j).setCellValue("Pass");
+			  
+		} catch (Exception e) {
+			// TODO: handle exception
+			//sheet.getRow(1).createCell(j).setCellValue("fail");
+			System.out.println("Fail");
+		}
+		  
+		  
+		  
+		  
+		  MobileElement get_started = driver.findElementByXPath("//*[@text='GET STARTED']");
+		  get_started.click();
+		  
+		  Thread.sleep(3000);
+		  
+		  
+		        FileOutputStream fileOutput = new FileOutputStream(src);
+		        // finally write content
+		        workbook.write(fileOutput);
+		         // close the file
+		        fileOutput.close();
+		  
+	  }
+	  
+	  @Test(priority=1)
+	  public void Login_via_Mobile_number() throws InterruptedException
+	  {
+		  //===========MOBILE NUMBER============//
+		  
+		  driver.findElementByXPath("//*[@text='Mobile Number']").sendKeys("8136948537");
+		  Thread.sleep(3000);
+		  System.out.println("Mobile number is entered");
+		  
+		  MobileElement submit = driver.findElementsByXPath("//*[@text='SUBMIT']").get(0);
+		  submit.click();
+		  Thread.sleep(3000);
+	  }
+	  
+	  
+	  @Test(priority=2)
+	  public void OTP_PAGE() throws InterruptedException
+	  {
+		  
+		  //default OTP for static phone number
+		  
+		  MobileElement one = driver.findElementsByClassName("android.widget.EditText").get(0);
+		  one.sendKeys("7");
+		  MobileElement digit2 = driver.findElementsByClassName("android.widget.EditText").get(1);
+		  digit2.sendKeys("4");
+		  MobileElement digit3 = driver.findElementsByClassName("android.widget.EditText").get(2);
+		  digit3.sendKeys("8");
+		  MobileElement digit4 = driver.findElementsByClassName("android.widget.EditText").get(3);
+		  digit4.sendKeys("4");
+		  
+		  if(driver.findElementsByXPath("//*[@text='INVALID OTP']").size() != 0)
+		  {
+			  System.out.println("Entered a invalid OTP");
+		  }
+		  else
+		  {
+		  System.out.println("Login successfully");
+		  }
+	  }
 	  
 	  
 	  
 	  
-	  MobileElement get_started = driver.findElementByXPath("//*[@text='GET STARTED']");
-	  get_started.click();
-	  
-	  Thread.sleep(3000);
-	  
-	  
-	        FileOutputStream fileOutput = new FileOutputStream(src);
-	        // finally write content
-	        workbook.write(fileOutput);
-	         // close the file
-	        fileOutput.close();
-	  
-  }
-  
-  @Test(priority=1)
-  public void Login_via_Mobile_number() throws InterruptedException
-  {
-	  //===========MOBILE NUMBER============//
-	  
-	  driver.findElementByXPath("//*[@text='Mobile Number']").sendKeys("9791072819");
-	  Thread.sleep(3000);
-	  System.out.println("Mobile number is entered");
-	  
-	  MobileElement submit = driver.findElementsByXPath("//*[@text='SUBMIT']").get(0);
-	  submit.click();
-	  Thread.sleep(3000);
-  }
-  
-  public void swipe()
-  {  
-	  TouchAction action = new TouchAction(driver);
-	  PointOption p1= new PointOption();
-	  
-	  action.longPress(PointOption.point(925, 1000)).moveTo(PointOption.point(40, 950)).release().perform();
-   }
-  
-  
-  
+	  public void swipe()
+	  {  
+		  TouchAction action = new TouchAction(driver);
+		  PointOption p1= new PointOption();
+		  
+		  action.longPress(PointOption.point(925, 1000)).moveTo(PointOption.point(40, 950)).release().perform();
+	   }
   
   //@AfterTest
   public void aftertest()
   {
 	  driver.quit();
   }
-  
 }
